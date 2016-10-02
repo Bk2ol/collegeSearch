@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-catalog="school" match-name="School"/>
+  <table-filter match-catalog="school" match-name="a_schools_for_b_students"/>
+  <table-filter match-catalog="school" match-name="authorities"/>
+  <table-filter match-catalog="school" match-name="best_school_major"/>
+  <table-filter match-catalog="school" match-name="graduate_major"/>
+  <table-filter match-catalog="school" match-name="graduate_school_major"/>
+  <table-filter match-catalog="school" match-name="major"/>
+  <table-filter match-catalog="school" match-name="school_international_application"/>
+  <table-filter match-catalog="school" match-name="school_speciality"/>
+  <table-filter match-catalog="school" match-name="student"/>
+  <table-filter match-catalog="school" match-name="users"/>
+</hibernate-reverse-engineering>

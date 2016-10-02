@@ -1,0 +1,2 @@
+<link rel="stylesheet" type="text/css" href="/CollegeSearch/static/js/DataTables/media/css/dataTables.bootstrap.css" />
+<script src="/CollegeSearch/static/js/DataTables/media/js/dataTables.bootstrap.min.js"></script>

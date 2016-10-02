@@ -1,0 +1,96 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:mvc="http://www.springframework.org/schema/mvc" 
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
+                        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd                       
+                        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+  
+    <!-- MVC -->
+    <mvc:annotation-driven />
+  
+    <!-- Static files location --> 
+    <mvc:resources location="/WEB-INF/static/" mapping="/static/**" />
+    <mvc:resources location="/WEB-INF/includes/" mapping="/includes/**" /> 
+  
+    <!-- Annotation auto scan -->
+    <context:component-scan base-package="com.collegesearch" />
+   
+    <!-- Transaction -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    
+     <!-- AOP Auto Proxy -->
+    <aop:aspectj-autoproxy />
+          
+     <!-- View Resolver -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/views" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+    
+    <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+       <property name="transactionManager" ref="transactionManager" />
+       <property name="transactionAttributes">
+       <props>
+          <prop key="save">PROPAGATION_REQUIRED</prop>
+       </props>
+       </property>
+    </bean>
+  
+    <!-- Transaction Manager -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">  
+        <property name="sessionFactory" ref="sessionFactory" />  
+    </bean>
+    <context:component-scan base-package="com.collegesearch" />
+    
+    <!-- Datasource -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">  
+        <property name="driverClassName" value="${database.driver}" />  
+        <property name="url" value="${database.url}" />  
+        <property name="username" value="${database.user}" />  
+        <property name="password" value="${database.password}" />
+    </bean>
+ 
+    <!-- SessionFactory -->   
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />  
+        <property name="packagesToScan" value="com.collegesearch.domain" />
+        <property name="hibernateProperties">  
+            <props>  
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>  
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>  
+                <prop key="format_sql">${hibernate.format_sql}</prop>
+                <!-- <prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</prop>-->
+                <prop key="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>                  
+                
+                <!-- Hibernate Cache -->
+                <prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+                <prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>  
+                <prop key="hibernate.cache.ehcache.configurationResourceName">/ehcache.xml</prop>
+                <prop key="hibernate.cache.use_structured_entries">${hibernate.cache.use_structured_entries}</prop>     
+                <prop key="hibernate.cache.generate_statistics">${hibernate.cache.generate_statistics}</prop> 
+                <prop key="net.sf.ehcache.disabled">${net.sf.ehcache.disabled:false}</prop>
+                   
+                <!--  Hibernate Search -->
+                <prop key="hibernate.search.autoregister_listeners">true</prop>
+                <!--<prop key="hibernate.search.indexing_strategy">manual</prop>--> 
+                <prop key="hibernate.search.default.directory_provider">${hibernate.search.default.directory_provider}</prop>
+                <!-- <prop key="hibernate.search.default.indexBase">${hibernate.search.default.indexBase}</prop>  --> 
+                <!-- <prop key="hibernate.search.lucene_version">${hibernate.search.lucene_version}</prop> -->
+                <prop key="hibernate.search.default.refresh">${hibernate.search.default.refresh}</prop>
+                
+                <prop key="hibernate.max.fetch.depth">${hibernate.max.fetch.depth}</prop>          
+                <prop key="hibernate.jdbc.fetch.size">${hibernate.jdbc.fetch.size}</prop>          
+                <!--<prop key="hibernate.jdbc.batch.size">${hibernate.jdbc.bstch.size}</prop>--> 
+           </props>  
+        </property>  
+    </bean>
+    
+     <context:property-placeholder location="classpath:properties/jdbc.properties, classpath:properties/hibernate.properties" ignore-unresolvable="false"/>
+</beans>

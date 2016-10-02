@@ -1,0 +1,1 @@
+<link rel="stylesheet" type="text/css" href="/CollegeSearch/static/css/general.css"  />

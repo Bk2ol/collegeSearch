@@ -1,0 +1,39 @@
+.table  td,.table  th {
+	text-align: center;
+}
+/* .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #ccebff;
+} */
+.table{
+	margin-top:0px;
+}
+
+
+.table-hover>tbody>tr:hover>td:hover, .table-hover>tbody>tr:hover>th:hover{
+      background-color: #ccebff!important;
+}
+
+.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th{
+        background-color: inherit;
+} 
+
+.tableTitle{
+	background-color: #008ae6;
+ 	border-radius: 15px 15px 0px 0px;
+	margin-bottom:0px;
+}
+h1{
+	text-align: center;
+	margin-top:0px;
+	margin-bottom:0px;
+	color:white;
+}
+.jumbotron{
+	background-color: white;
+	margin-bottom:0px;
+	padding-bottom:20px;
+	padding-left:0px;
+}
+.jumbotron>h1{
+	text-align: left;
+}
