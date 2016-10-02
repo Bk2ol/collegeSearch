@@ -1,4 +1,4 @@
-USA College Search and Match.
+#USA College Search and Match.
 
 This project is used to help student to get USA college information easily. 
 By select your search preference, you can see the colleges which are suitable for you.
