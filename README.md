@@ -5,3 +5,5 @@ By select your search preference, you can see the colleges which are suitable fo
 
 
 Using JAVA spring frame work, hibernate, mysql,jquery, bootstrap and several javascript Plug In.
+
+Currently I am still working om this project. Demo page will be publish in near future.
