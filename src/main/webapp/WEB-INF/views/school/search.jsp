@@ -5,7 +5,7 @@
 <head>
 <title>US College Search</title>
 <%@ include file="/WEB-INF/includes/bootstrapJqueryCSS.jsp"%>
-<%@ include file="/WEB-INF/includes/general.jsp"%>
+<%@ include file="/WEB-INF/includes/generalCSS.jsp"%>
 <%@ include file="/WEB-INF/includes/schoolSearchCSS.jsp"%>
 </head>
 
@@ -100,11 +100,12 @@
 				<th>TOEFL Score (Min/Avg)</th>
 				<th>Application Deadline</th>
 				<th>Location</th>
- 				<th>acceptRate</th>
+ 				<th>acceptRate (%)</th>
 				<th>Type</th>
 				<th>setting</th>
 				<th>category</th>
 				<th>size</th> 
+			</thead>
 			<tbody>
 
 			</tbody>
@@ -117,7 +118,7 @@
 				<th>TOEFL Score (Min/Avg)</th>
 				<th>Application Deadline</th>
 				<th>Location</th>
-				<th>acceptRate</th>
+				<th>acceptRate (%)</th>
 				<th>Type</th>
 				<th>setting</th>
 				<th>category</th>
@@ -128,7 +129,7 @@
 	<%@ include file="/WEB-INF/views/footer.jsp"%>
 	<%@ include file="/WEB-INF/includes/bootstrapJqueryJS.jsp"%>
 	<%@ include file="/WEB-INF/includes/schoolSearchJS.jsp"%>
-
+	<%@ include file="/WEB-INF/includes/generalJS.jsp"%>
 
 </body>
 </html>

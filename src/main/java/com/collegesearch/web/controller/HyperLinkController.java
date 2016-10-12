@@ -12,17 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/aaaaaa")
+@RequestMapping("/aaaaa")
 public class HyperLinkController {
 	@RequestMapping(value = "/**")
     public  String redirect(HttpServletRequest httpServletRequest) throws UnsupportedEncodingException {
 		System.out.println("*******mapping success***************");
 		String URL = httpServletRequest.getRequestURI();
-		URL = URL.substring(URL.lastIndexOf("aaaaaa/")+7);
+		URL = URL.substring(URL.lastIndexOf("goHTTP/")+7);
 		System.out.println(URL);
 		String string = URLDecoder.decode(URL, "UTF-8");
-//		byte ptext[] = URL.getBytes();
-//		URL = new String(ptext, "UTF-8");
 		System.out.println("decode " + string);
 		if(!string.startsWith("http://")) {
 			

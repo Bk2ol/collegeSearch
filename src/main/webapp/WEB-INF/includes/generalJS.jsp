@@ -1,0 +1,1 @@
+<script src="/CollegeSearch/static/js/general.js"></script>

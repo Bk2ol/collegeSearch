@@ -485,7 +485,57 @@ $(function() {
 	if ($('#heightForTopRank').get(0).getBoundingClientRect().height != standerheight) {
 		$('#heightForTopRank').css("height", standerheight + 'px');
 	}
+
 });
+
+$('#ms-LanguageTest').parent().popover({trigger:'hover',placement:'top',content:'Select the type of langage test and enter the score'});
+$('#ms-Test').parent().popover({trigger:'hover',placement:'top',content:'Select the type of test and enter the score of each part respectively'});
+$('#ms-SatII').parent().popover({trigger:'hover',placement:'top',content:'Select your SAT subject, multiple subjects can be selected'});
+$('#bottomRank').parent().popover({trigger:'hover',placement:'top',content:'Select the highest rank number you want to search'});
+$('#topRank').parent().popover({trigger:'hover',placement:'top',content:'Select the lowest rank number you want to search'});
+$('#ms-AcceptRate').parent().popover({trigger:'hover',placement:'top',content:'Select the school accept rate interval, multiple intervals can be selected'});
+$('#ms-Size').parent().popover({trigger:'hover',placement:'top',content:'Select the school population size, small: below 2000, medium: 2000-5000, large: above 5000'});
+$('#ms-State').parent().popover({trigger:'hover',placement:'top',content:'Select the school location, multiple major can be selected'});
+
+
+// costom column sort function for datatable
+jQuery.extend( jQuery.fn.dataTableExt.oSort, {
+    "non-empty-string-asc": function (str1, str2) {
+        if(str1 == "" || str1 == null)
+            return 1;
+        if(str2 == "" || str2 == null)
+            return -1;
+        return ((str1 < str2) ? -1 : ((str1 > str2) ? 1 : 0));
+    },
+ 
+    "non-empty-string-desc": function (str1, str2) {
+        if(str1 == "" || str1 == null)
+            return 1;
+        if(str2 == "" || str2 == null)
+            return -1;
+        return ((str1 < str2) ? 1 : ((str1 > str2) ? -1 : 0));
+    }
+} );
+jQuery.extend( jQuery.fn.dataTableExt.oSort, {
+    "non-empty-number-asc": function (num1, num2) {
+    if(num1 == null)
+        return 1;
+    if(num2 == null)
+        return -1;
+    return ((num1 < num2) ? -1 : ((num1 > num2) ? 1 : 0));
+	},
+    "non-empty-number-desc": function (num1, num2) {
+    if(num1 == null)
+        return 1;
+    if(num2 == null)
+        return -1;
+    return ((num1 < num2) ? 1 : ((num1 > num2) ? -1 : 0));
+	}
+} );
+
+
+
+
 $('#schoolTable').DataTable({
 	"scrollX" : true,
 	"columns" : [ {
@@ -562,7 +612,19 @@ $('#schoolTable').DataTable({
 	}, ],
 	"language" : {
 		"emptyTable" : "Please Search By The Option Above"
-	}
+	},
+    "columnDefs": [
+    	{type: 'non-empty-number', targets: 1},
+    	{type: 'non-empty-number', targets: 2},
+    	{type: 'non-empty-number', targets: 3},
+    	{type: 'non-empty-string', targets: 4},
+    	{type: 'non-empty-string', targets: 5},
+    	{type: 'non-empty-string', targets: 6},
+    	{type: 'non-empty-number', targets: 8},
+      	{type: 'non-empty-string', targets: 9}, 
+       	{type: 'non-empty-string', targets: 10} 
+    ]
+
 });
 $('#getCriteria').on('click', function(event){
   var query = new Object();
@@ -691,62 +753,28 @@ $('#getCriteria').on('click', function(event){
       contentType :   'application/json',
       dataType: "json",
          success: function(result){
-        	 var table=$('#schoolTable').DataTable();
-        	 table.clear().draw();
-        	 table.rows.add(result).draw();
+	    	var table=$('#schoolTable').DataTable();
+	    	table.clear().draw();
+	    	table.rows.add(result).draw();
+	    	$.notify(
+	        {
+	          icon: 'glyphicon glyphicon-ok',
+	          message: "Search success!"
+	        },{
+	          type: 'success',
+	          delay: 2000,
+	          template: '<div data-notify="container" class="col-xs-5 col-sm-3 col-xl-2 alert alert-{0}" role="alert">' +
+	                    '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+	                    '<span data-notify="icon"></span> ' +
+	                    '<span data-notify="title">{1}</span> ' +
+	                    '<span data-notify="message">{2}</span>' +
+	                    '<div class="progress" data-notify="progressbar">' +
+	                      '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+	                    '</div>' +
+	                    '<a href="{3}" target="{4}" data-notify="url"></a>' +
+	                  '</div>' 
+	      });
          }
     });
 });
-
-// var IELTS=$('#IELTS').magicSuggest({
-// placeholder: 'Select...',
-// allowFreeEntries: false,
-// expandOnFocus: true,
-// selectionPosition: 'inner',
-// resultAsString: true,
-// maxSelection: 1,
-// data: [{
-// "id": 1,
-// "name": "9",
-// },{
-// "id": 2,
-// "name": "8.5"
-// },{
-// "id": 3,
-// "name": "8"
-// },{
-// "id": 4,
-// "name": "7.5"
-// },{
-// "id": 5,
-// "name": "7"
-// },{
-// "id": 6,
-// "name": "6.5"
-// },{
-// "id": 7,
-// "name": "6"
-// },{
-// "id": 8,
-// "name": "5.5"
-// },{
-// "id": 9,
-// "name": "5"
-// },{
-// "id": 10,
-// "name": "4.5"
-// },{
-// "id": 11,
-// "name": "4"
-// },{
-// "id": 12,
-// "name": "3"
-// },{
-// "id": 13,
-// "name": "2"
-// },{
-// "id": 14,
-// "name": "1"
-// }]
-// });
 

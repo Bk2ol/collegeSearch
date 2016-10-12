@@ -1,5 +1,8 @@
 package com.collegesearch.web.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 import javax.servlet.http.HttpServletRequest;
 
 //import org.springframework.security.access.prepost.PreAuthorize;
@@ -36,5 +39,30 @@ public class HomeController {
     		//model.addAttribute("school", new School());	
     		return "/home";
     	}	
-
+    	@RequestMapping(value = "/GTExperience", method = RequestMethod.GET)
+    	public String showTestExperience(Model model) {
+    		return "/other/applicationTest";
+    	}
+    	@RequestMapping(value = "/aboutMe", method = RequestMethod.GET)
+    	public String showSelfIntroduction(Model model) {
+    		return "/other/aboutMe";
+    	}
+    	
+    	@RequestMapping(value = "/goHTTP/**")
+        public  String redirect(HttpServletRequest httpServletRequest) throws UnsupportedEncodingException {
+    		System.out.println("*******mapping success***************");
+    		String URL = httpServletRequest.getRequestURI();
+    		URL = URL.substring(URL.lastIndexOf("goHTTP/")+7);
+    		System.out.println(URL);
+    		String string = URLDecoder.decode(URL, "UTF-8");
+    		System.out.println("decode " + string);
+    		if(!string.startsWith("http")) {
+    			
+    			string = "http://" + string;
+    		}
+    		System.out.println("fincal "+string);
+    		return "redirect:" + string;
+    		
+        }
+    	
 	}

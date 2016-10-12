@@ -5,7 +5,7 @@
 <head>
 <title>US College Search</title>
 <%@ include file="/WEB-INF/includes/bootstrapJqueryCSS.jsp"%>
-<%@ include file="/WEB-INF/includes/general.jsp"%>
+<%@ include file="/WEB-INF/includes/generalCSS.jsp"%>
 <%@ include file="/WEB-INF/includes/schoolDetailCSS.jsp"%>
 </head>
 <script >

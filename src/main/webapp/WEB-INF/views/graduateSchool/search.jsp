@@ -5,7 +5,7 @@
 <head>
 <title>US College Search</title>
 <%@ include file="/WEB-INF/includes/bootstrapJqueryCSS.jsp"%>
-<%@ include file="/WEB-INF/includes/general.jsp"%>
+<%@ include file="/WEB-INF/includes/generalCSS.jsp"%>
 <%@ include file="/WEB-INF/includes/graduateSchoolSearchCSS.jsp"%>
 </head>
 
@@ -13,6 +13,9 @@
 	<%@ include file="/WEB-INF/views/header.jsp"%>
 	<div class="container mainContent" id='checkHightForLineUp'>
 		<form>
+			<div class="col-xs-12 col-sm-12 col-md-12 form-group">
+				<h4>Enter Your information</h4>
+			</div>
 			<div class="col-xs-12 col-sm-6 col-md-4 form-group">
 				<strong>Major :</strong> <input class="form-control" id="ms-major">
 			</div>
@@ -48,7 +51,6 @@
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-2 pull-right form-group"
 				id='dateLineUp2'>
-				<!-- <label for="dtp_input2" class="control-label" style="margin: 0" >select date:</label> -->
 				</br>
 				<div class="input-group date form_date " data-date=""
 					data-date-format="dd MM yyyy" data-link-field="dtp_input2"
@@ -68,7 +70,7 @@
 					id="getCriteria">Search</button>
 			</div>
 		</form>
-		<table id="graduateSchoolTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
+		<table id="graduateSchoolTable"  class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 			<thead>
 				<tr>
 					<th>school</th>
@@ -105,7 +107,6 @@
 	<%@ include file="/WEB-INF/views/footer.jsp"%>
 	<%@ include file="/WEB-INF/includes/bootstrapJqueryJS.jsp"%>
 	<%@ include file="/WEB-INF/includes/graduateSchoolSearchJS.jsp"%>
-
-
+	<%@ include file="/WEB-INF/includes/generalJS.jsp"%>
 </body>
 </html>

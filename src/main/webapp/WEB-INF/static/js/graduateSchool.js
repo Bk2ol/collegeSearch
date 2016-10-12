@@ -364,10 +364,25 @@ $(function() {
             "value":"WY"
       }]
   });
-$("[data-toggle='tooltip']").tooltip();
+// $("[data-toggle='tooltip']").tooltip();
 });
-$('#ms-major').parent().tooltip({'trigger':'hover', 'title': 'asdadsad'});
-$('#ms-degree').parent().popover({trigger:'hover',placement:'top',content:'popover'});
+$('#ms-major').parent().popover({trigger:'hover',placement:'top',content:'Select your major, multiple major can be selected'});
+$('#ms-degree').parent().popover({trigger:'hover',placement:'top',content:'Select your degree, you can search both master and PHD degree'});
+$('#bottomRank').parent().popover({trigger:'hover',placement:'top',content:'Select the highest rank number you want to search'});
+$('#topRank').parent().popover({trigger:'hover',placement:'top',content:'Select the lowest rank number you want to search'});
+$('#ms-LanguageTest').parent().popover({trigger:'hover',placement:'top',content:'Select the type of langage test and enter the score'});
+$('#ms-Test').parent().popover({trigger:'hover',placement:'top',content:'Select the type of general test and enter the score'});
+$('#ms-Deadline').parent().popover({trigger:'hover',placement:'top',content:'Select the semester you want to eroll'});
+$('#dateLineUp2').popover({trigger:'hover',placement:'top',content:'Select the date and this will search the date equal or before the selected date'});
+$('#ms-state').parent().popover({trigger:'hover',placement:'top',content:'Select the school location, multiple major can be selected'});
+$("div.dataTables_filter").popover({trigger:'hover',placement:'top',content:'Select the school location, multiple major can be selected'});
+//datatable initialize
+$("div.dataTables_filter").keyup( function (e) {
+  
+    if (e.keyCode == 13) {
+        oTable.fnFilter( this.value );
+    }
+} );
 $('#graduateSchoolTable').DataTable({
   "scrollX": true,
   "columns": [
@@ -391,10 +406,11 @@ $('#graduateSchoolTable').DataTable({
   }
 });
 
+
+// copy the url of school
 $('#graduateSchoolTable tbody').on( 'click', 'button', function () {
   var table = $('#graduateSchoolTable').DataTable();
     var data =  table.row( $(this).parents('tr') ).data();
-    //alert(JSON.stringify(data.admissionWebpage));
     copyTextToClipboard(data.admissionWebpage);
 } );
 
@@ -486,6 +502,24 @@ $('#getCriteria').on('click', function(event){
         	 var table=$('#graduateSchoolTable').DataTable();
         	 table.clear().draw();
         	 table.rows.add(result).draw();
+           $.notify(
+            {
+              icon: 'glyphicon glyphicon-ok-circle',
+              message: "Search success!"
+            },{
+              type: 'success',
+              delay: 2000,
+              template: '<div data-notify="container" class="col-xs-5 col-sm-3 col-xl-2 alert alert-{0}" role="alert">' +
+                        '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+                        '<span data-notify="icon"></span> ' +
+                        '<span data-notify="title">{1}</span> ' +
+                        '<span data-notify="message">{2}</span>' +
+                        '<div class="progress" data-notify="progressbar">' +
+                          '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                        '</div>' +
+                        '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                      '</div>' 
+          });
          }
     });
 });
@@ -547,7 +581,25 @@ function copyTextToClipboard(text) {
   try {
     var successful = document.execCommand('copy');
     var msg = successful ? 'successful' : 'unsuccessful';
-    console.log('Copying text command was ' + msg);
+    $.notify(
+            {
+              icon: 'glyphicon glyphicon-ok',
+              message: "Copy the Link: "+text,
+              // url: 'goHTTP/'+text
+            },{
+              type: 'success',
+              delay: 2000,
+              template: '<div data-notify="container" class="col-xs-5 col-sm-3 col-xl-2 alert alert-{0}" role="alert">' +
+                        '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+                        '<span data-notify="icon"></span> ' +
+                        '<span data-notify="title">{1}</span> ' +
+                        '<span data-notify="message">{2}</span>' +
+                        '<div class="progress" data-notify="progressbar">' +
+                          '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                        '</div>' +
+                        '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                      '</div>' 
+          });
   } catch (err) {
     console.log('Oops, unable to copy');
   }

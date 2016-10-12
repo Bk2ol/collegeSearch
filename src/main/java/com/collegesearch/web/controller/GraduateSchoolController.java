@@ -46,6 +46,15 @@ public class GraduateSchoolController {
 		return "/graduateSchool/search";
 	}
 	
+	
+	
+	
+	@RequestMapping(value="/allGraduateSchools",method=RequestMethod.GET)
+	public String allGraduateSchool(Model model) {
+		return "/graduateSchool/AllGraduateSchoolList";
+	}
+	
+	
 	@RequestMapping(value="/searchGraduateSchoolMajor",method = RequestMethod.POST)
 	@ResponseBody
 	@Transactional

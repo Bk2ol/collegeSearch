@@ -41,6 +41,11 @@ public class SchoolController {
 		return "/school/search";
 	}
 	
+	@RequestMapping(value="/allSchools",method = RequestMethod.GET)
+	public String allSchool(Model model) {
+		return "/school/AllSchoolList";
+	}
+	
 	@RequestMapping(value="/searchSchools",method = RequestMethod.POST)
 	@ResponseBody
 	@Transactional
@@ -61,13 +66,6 @@ public class SchoolController {
 			e1.printStackTrace();
 		}
 		
-//		Set set = queryParam.entrySet();
-//	      // Get an iterator
-//	      Iterator i = set.iterator();
-//	      // Display elements
-//	      while(i.hasNext()) {
-//	         Map.Entry me = (Map.Entry)i.next();
-//	      }
 		
 		try {
 			resultList=schoolService.getSchools(queryParam);
@@ -87,40 +85,11 @@ public class SchoolController {
 		return reponse;
 	}
 	
-//	@RequestMapping(value="/searchSchoolByName/{schoolName}",method = RequestMethod.GET)
-//	@ResponseBody
-//	@Transactional
-//	public String searchSchool(@PathVariable String schoolName, Model model) {
-//		System.out.println("*****************school name***************");
-//		System.out.println(schoolName);
-//		System.err.println("*****************school name***************");
-//		School searchedSchool=null;
-//		ObjectMapper mapper = new ObjectMapper();
-//		try {
-//			searchedSchool = schoolService.getSchoolByName(schoolName);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		SchoolDetailDto searchedSchoolDetailDto = new SchoolDetailDto(searchedSchool);
-//		
-//		String reponse=null;
-//		try {
-//			reponse = mapper.writeValueAsString(searchedSchoolDetailDto);
-//		} catch (JsonProcessingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		//return reponse;
-//		return "redirect:/school/schoolInDetail";
-//	}
+
 	@RequestMapping(value="/searchSchoolByName/{schoolName}",method = RequestMethod.GET)
 	@ResponseBody
 	@Transactional
 	public ModelAndView searchSchool(@PathVariable String schoolName, Model model) {
-		System.out.println("*****************school name***************");
-		System.out.println(schoolName);
-		System.err.println("*****************school name***************");
 		School searchedSchool=null;
 		ObjectMapper mapper = new ObjectMapper();
 		try {
