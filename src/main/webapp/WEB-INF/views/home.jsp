@@ -74,7 +74,7 @@
 					application deadline, minium / average toefl score, accept rate
 					school type, setting, category,selectivity and population.</p>
 				<p>
-					<a class="btn btn-default" href="/CollegeSearch/school/allSchools"
+					<a class="btn btn-primary" href="/CollegeSearch/school/allSchools"
 						role="button">View details »</a>
 				</p>
 			</div>
@@ -85,7 +85,7 @@
 					requirement in GRE / GMAT / LSAT, language test requirement in
 					IEITS, application deadline.</p>
 				<p>
-					<a class="btn btn-default"
+					<a class="btn btn-primary"
 						href="/CollegeSearch/graduateSchool/allGraduateSchools"
 						role="button">View details »</a>
 				</p>
@@ -96,7 +96,7 @@
 				the recommend study material, how to improve your english form 
 				reading, writing, listening, speaking.</p>
 				<p>
-					<a class="btn btn-default"
+					<a class="btn btn-primary"
 						href="http://v3.bootcss.com/examples/jumbotron/#" role="button">View
 						details »</a>
 				</p>

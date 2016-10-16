@@ -66,7 +66,7 @@
 			</div>
 			<div class="col-xs-6 col-md-2 pull-right form-group">
 				</br>
-				<button type="button" class="btn btn-success form-control"
+				<button type="button" class="btn btn-primary form-control"
 					id="getCriteria">Search</button>
 			</div>
 		</form>
